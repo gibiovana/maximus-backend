@@ -1,4 +1,4 @@
-package com.maximus;
+/*package com.maximus;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -26,9 +26,9 @@ class Initializer implements CommandLineRunner {
                 repository.save(new Doctor(name))
         );
 
-        Doctor doctor = repository.findByDoctorName("Sharpay");
+        Doctor doctor = repository.findByDoctor("Sharpay");
         repository.save(doctor);
 
         System.out.println(repository.findAll().toString());
     }
-}
+}*/

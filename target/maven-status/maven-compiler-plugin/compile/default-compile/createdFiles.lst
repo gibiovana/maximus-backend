@@ -4,7 +4,6 @@ com/maximus/model/Device.class
 com/maximus/controller/DiagnosisController.class
 com/maximus/repository/DiagnosisRepository.class
 com/maximus/repository/InstitutionRepository.class
-com/maximus/model/Contato.class
 com/maximus/dto/DoctorDTO.class
 com/maximus/model/Doctor.class
 com/maximus/service/DoctorService.class

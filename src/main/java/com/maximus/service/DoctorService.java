@@ -2,12 +2,13 @@ package com.maximus.service;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
-
 import com.maximus.model.Doctor;
 import com.maximus.dto.DoctorDTO;
 import com.maximus.mapper.DoctorMapper;
 import com.maximus.repository.DoctorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
+
 
 @Service
 public class DoctorService {
@@ -18,16 +19,21 @@ public class DoctorService {
 		return this.repository.findByDoctorId(id);
 	}
 	
+	@Transactional
 	public DoctorDTO storeDoctorData(DoctorDTO dto) {
 		Doctor doctor = DoctorMapper.fromDTOToEntity(dto);
-		Optional<Doctor> existingUser = this.repository.findByDoctorId(doctor.getDoctorId());
+		Optional<Doctor> existingUser = doctor.getDoctorId() != null ? this.repository.findByDoctorCRM(dto.getDoctorCRM()) : Optional.ofNullable(null);
 		
 		if(!existingUser.isPresent()) {
-			doctor = this.repository.save(doctor);
-			return DoctorMapper.fromEntityToDTO(doctor);
+			doctor.setDoctorName(dto.getDoctorName());
+			doctor.setDoctorEmail(dto.getDoctorEmail());
+			doctor.setDoctorCRM(dto.getDoctorCRM());
+			doctor.setPassword(dto.getPassword());
+		}else{
+			new Exception("Usuário já foi registrado.");
 		}
-		
-		return DoctorMapper.fromEntityToDTO(existingUser.get());
+
+		doctor = this.repository.save(doctor);
+		return DoctorMapper.fromEntityToDTO(doctor);
 	}
-	
 }

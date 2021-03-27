@@ -41,8 +41,8 @@ public class DoctorController {
 	
 	@GetMapping(path = "/{value}")
 	@ResponseBody
-	public Doctor getDoctorByName (@PathVariable(required = true, name="value")String name){
-		return repo.findByDoctorName(name);
+	public Optional<Doctor> getDoctorByCRM (@PathVariable(required = true, name="value")String crm){
+		return repo.findByDoctorCRM(crm);
 	}
 
 	@GetMapping(path = "/id/{id}")

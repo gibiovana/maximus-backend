@@ -7,7 +7,7 @@ import com.maximus.model.Doctor;
 
 public interface DoctorRepository extends JpaRepository<Doctor, Integer> {
 
-    Doctor findByDoctorName(String name);
+    Optional<Doctor> findByDoctorCRM(String crm);
     
     Optional<Doctor> findByDoctorId(Integer doctorId);
 

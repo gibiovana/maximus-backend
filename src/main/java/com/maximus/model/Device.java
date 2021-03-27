@@ -19,9 +19,7 @@ public class Device {
     @OneToOne
     @JoinColumn(name = "patient_id", referencedColumnName="patientId", foreignKey = @ForeignKey(name="fk_patient_id"))
     private Patient owner;
-
-    public Device() {}
-
+    
     private Device(Integer deviceId, Patient owner, String operatingSystem, String model) {
         this.deviceId = deviceId;
         this.owner = owner;
