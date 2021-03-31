@@ -19,6 +19,7 @@ import com.maximus.model.Doctor;
 import com.maximus.dto.DoctorDTO;
 import com.maximus.repository.DoctorRepository;
 
+@CrossOrigin(origins = "*")
 @Controller
 @RequestMapping(path = "/doctor")
 public class DoctorController {
@@ -35,7 +36,7 @@ public class DoctorController {
 	
 	@GetMapping(path = "/all")
 	@ResponseBody
-	public List<Doctor> getAllDoctors (@PathVariable(required = true, name="value")String name){
+	public List<Doctor> getAllDoctors (){
 		return repo.findAll();
 	}
 	
@@ -52,7 +53,6 @@ public class DoctorController {
 	}
 
 	@PostMapping("/register")
-	@CrossOrigin(origins = "http://localhost:3000")
 	public DoctorDTO registerDoctor(@RequestBody DoctorDTO doctorDTO) {
 		return this.doctorService.storeDoctorData(doctorDTO);
 	}
