@@ -1,5 +1,4 @@
 com/maximus/repository/DoctorRepository.class
-com/maximus/controller/DoctorController.class
 com/maximus/model/Device.class
 com/maximus/controller/DiagnosisController.class
 com/maximus/repository/DiagnosisRepository.class

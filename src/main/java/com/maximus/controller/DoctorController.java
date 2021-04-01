@@ -4,7 +4,9 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -55,5 +57,11 @@ public class DoctorController {
 	@PostMapping("/register")
 	public DoctorDTO registerDoctor(@RequestBody DoctorDTO doctorDTO) {
 		return this.doctorService.storeDoctorData(doctorDTO);
+	}
+
+	@RequestMapping("/login/{doctorEmail}?{password}")
+	@ResponseBody
+	public Optional<Doctor> getCurrentDoctor(@PathVariable(required = true, name="doctorEmail")String doctorEmail, @PathVariable(required = true, name="password")String password){
+		return repo.findByDoctorEmailAndPassword(doctorEmail, password);
 	}
 }
