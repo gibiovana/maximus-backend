@@ -14,11 +14,13 @@ import java.util.List;
 
 @Entity
 public class Institution {
-    @Id
+  @Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer institutionId;
 	private String institutionName;
-    private String cnes; 
+  private String cnes; 
+	private String adminEmail;
+	private String password;
 
 	@Fetch(FetchMode.SELECT)
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "institution")
@@ -27,10 +29,12 @@ public class Institution {
 	public Institution() {
 	}
 
-	public Institution(Integer institutionId, String name, String cnes, List<Doctor> doctors) {
+	public Institution(Integer institutionId, String name, String cnes, String adminEmail, String password, List<Doctor> doctors) {
 		this.institutionId = institutionId;
 		this.institutionName = name;
-        this.cnes = cnes;
+    this.cnes = cnes;
+		this.adminEmail = adminEmail;
+		this.password = password;
 		this.doctors = doctors;
 	}
 
@@ -40,10 +44,6 @@ public class Institution {
 
 	public void setInstitutionId(Integer institutionId) {
 		this.institutionId = institutionId;
-	}
-
-	public String getName() {
-		return institutionName;
 	}
 
 	public void setInstitutionName(String name) {
@@ -65,4 +65,25 @@ public class Institution {
 	public void setDoctors(List<Doctor> doctors) {
 		this.doctors = doctors;
 	}
+
+	public String getInstitutionName() {
+		return institutionName;
+	}
+
+	public String getAdminEmail() {
+		return adminEmail;
+	}
+
+	public void setAdminEmail(String adminEmail) {
+		this.adminEmail = adminEmail;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	
 }
