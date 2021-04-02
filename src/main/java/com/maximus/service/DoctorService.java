@@ -18,6 +18,10 @@ public class DoctorService {
 	public Optional<Doctor> findById(Integer id){
 		return this.repository.findByDoctorId(id);
 	}
+
+	public Optional<Doctor> getUser(String doctorEmail, String password){
+		return this.repository.findByDoctorEmailAndPassword(doctorEmail, password);
+	}
 	
 	@Transactional
 	public DoctorDTO storeDoctorData(DoctorDTO dto) {

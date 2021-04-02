@@ -4,9 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +17,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import com.maximus.service.DoctorService;
 import com.maximus.model.Doctor;
 import com.maximus.dto.DoctorDTO;
+import com.maximus.mapper.DoctorMapper;
 import com.maximus.repository.DoctorRepository;
 
 @CrossOrigin(origins = "*")
@@ -59,9 +58,11 @@ public class DoctorController {
 		return this.doctorService.storeDoctorData(doctorDTO);
 	}
 
-	@RequestMapping("/login/{doctorEmail}?{password}")
+	@RequestMapping("/login/{doctorEmail}&{password}")
 	@ResponseBody
-	public Optional<Doctor> getCurrentDoctor(@PathVariable(required = true, name="doctorEmail")String doctorEmail, @PathVariable(required = true, name="password")String password){
-		return repo.findByDoctorEmailAndPassword(doctorEmail, password);
+	public DoctorDTO getCurrentDoctor(@PathVariable(required = true, name="doctorEmail")String doctorEmail, @PathVariable(required = true, name="password")String password) throws Exception{
+		Doctor doctor = ((DoctorRepository) this.repo).findByDoctorEmailAndPassword(doctorEmail, password)
+		.orElseThrow(() -> new Exception("Doctor not found - " + doctorEmail));
+		return DoctorMapper.fromEntityToDTO(doctor);
 	}
 }
