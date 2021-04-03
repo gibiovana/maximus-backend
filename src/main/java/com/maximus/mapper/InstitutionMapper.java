@@ -8,7 +8,7 @@ public class InstitutionMapper {
     InstitutionDTO dto = new InstitutionDTO();
     dto.setInstitutionId(entity.getInstitutionId());
     dto.setInstitutionName(entity.getInstitutionName());
-    dto.setInstitutionCnes(entity.getCnes());
+    dto.setInstitutionCNES(entity.getCnes());
     dto.setAdminEmail(entity.getAdminEmail());
     dto.setPassword(entity.getPassword());
     return dto;
@@ -18,7 +18,7 @@ public static Institution fromDTOToEntity(InstitutionDTO dto) {
   Institution entity = new Institution();
   entity.setInstitutionId(dto.getInstitutionId());
   entity.setInstitutionName(dto.getInstitutionName());
-  entity.setInstitutionCnes(dto.getCnes());
+  entity.setInstitutionCNES(dto.getCnes());
   entity.setAdminEmail(dto.getAdminEmail());
   entity.setPassword(dto.getPassword());
   return entity;

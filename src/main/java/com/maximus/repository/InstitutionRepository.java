@@ -1,11 +1,20 @@
 package com.maximus.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.util.List;
+import java.util.Optional;
+
 import com.maximus.model.Institution;
 
 public interface InstitutionRepository extends JpaRepository<Institution, Integer> {
-	Institution findByInstitutionName(String name);
+	Optional<Institution> findByInstitutionName(String name);
 	
-	Institution findByInstitutionId(Integer institutionId);
+	Optional<Institution> findByInstitutionId(Integer institutionId);
 
+	Optional<Institution> findByCnes(String cnes);
+
+	Optional<Institution> findByInstitutionAdminEmailAndPassowrd(String adminEmail, String password);
+
+	List<Institution> findAll(); 
 }
