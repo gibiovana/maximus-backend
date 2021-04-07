@@ -20,7 +20,7 @@ public class InstitutionService {
 	}
 
 	public Optional<Institution> getInstitution(String adminEmail, String password){
-		return this.repository.findByInstitutionAdminEmailAndPassowrd(adminEmail, password);
+		return this.repository.findByAdminEmailAndPassword(adminEmail, password);
 	}
 	
 	@Transactional
@@ -31,7 +31,7 @@ public class InstitutionService {
 		if(!existingAdmin.isPresent()) {
 			institution.setInstitutionName(dto.getInstitutionName());
 			institution.setInstitutionCNES(dto.getCnes());
-      institution.setAdminEmail(dto.getAdminEmail());
+      		institution.setAdminEmail(dto.getAdminEmail());
 			institution.setPassword(dto.getPassword());
 		}else{
 			new Exception("Usuário já foi registrado.");

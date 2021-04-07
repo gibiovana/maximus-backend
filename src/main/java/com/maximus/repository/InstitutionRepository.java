@@ -14,7 +14,7 @@ public interface InstitutionRepository extends JpaRepository<Institution, Intege
 
 	Optional<Institution> findByCnes(String cnes);
 
-	Optional<Institution> findByInstitutionAdminEmailAndPassowrd(String adminEmail, String password);
+	Optional<Institution> findByAdminEmailAndPassword(String adminEmail, String password);
 
 	List<Institution> findAll(); 
 }

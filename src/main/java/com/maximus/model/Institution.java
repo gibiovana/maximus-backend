@@ -6,19 +6,20 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-
+import javax.persistence.Table;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
 import java.util.List;
 
 @Entity
+@Table(name = "Institution")
 public class Institution {
   @Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer institutionId;
 	private String institutionName;
-  private String cnes; 
+  	private String cnes; 
 	private String adminEmail;
 	private String password;
 
@@ -32,7 +33,7 @@ public class Institution {
 	public Institution(Integer institutionId, String name, String cnes, String adminEmail, String password, List<Doctor> doctors) {
 		this.institutionId = institutionId;
 		this.institutionName = name;
-    this.cnes = cnes;
+    	this.cnes = cnes;
 		this.adminEmail = adminEmail;
 		this.password = password;
 		this.doctors = doctors;

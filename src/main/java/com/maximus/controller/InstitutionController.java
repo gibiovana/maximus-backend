@@ -1,6 +1,7 @@
 package com.maximus.controller;
 
 import java.util.List;
+
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.maximus.dto.InstitutionDTO;
@@ -35,7 +37,7 @@ public class InstitutionController {
 	
 	@GetMapping(path = "/all")
 	@ResponseBody
-	public List<Institution> getAllInstitutions (@PathVariable(required = true, name="value")String name){
+	public List<Institution> getAllInstitutions (){
 		return repo.findAll();
 	}
 	
@@ -46,6 +48,7 @@ public class InstitutionController {
 	}
 	
 	@PostMapping("/register")
+	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public InstitutionDTO registerAdmin(@RequestBody InstitutionDTO institutionDTO) {
 		return this.institutionService.storeInstitutionData(institutionDTO);
 	}
