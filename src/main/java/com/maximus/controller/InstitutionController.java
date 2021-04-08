@@ -15,8 +15,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.maximus.dto.DoctorDTO;
 import com.maximus.dto.InstitutionDTO;
+import com.maximus.mapper.DoctorMapper;
+import com.maximus.mapper.InstitutionMapper;
+import com.maximus.model.Doctor;
 import com.maximus.model.Institution;
+import com.maximus.repository.DoctorRepository;
 import com.maximus.repository.InstitutionRepository;
 import com.maximus.service.InstitutionService;
 
@@ -51,6 +56,14 @@ public class InstitutionController {
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public InstitutionDTO registerAdmin(@RequestBody InstitutionDTO institutionDTO) {
 		return this.institutionService.storeInstitutionData(institutionDTO);
+	}
+	
+	@RequestMapping("/login/{adminEmail}&{password}")
+	@ResponseBody
+	public InstitutionDTO getCurrentInstitution(@PathVariable(required = true, name="adminEmail")String adminEmail, @PathVariable(required = true, name="password")String password) throws Exception{
+		Institution institution = ((InstitutionRepository) this.repo).findByAdminEmailAndPassword(adminEmail, password)
+		.orElseThrow(() -> new Exception("Institution not found - " + adminEmail));
+		return InstitutionMapper.fromEntityToDTO(institution);
 	}
 
 }

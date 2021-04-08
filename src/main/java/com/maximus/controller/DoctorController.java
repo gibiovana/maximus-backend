@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
-
 import com.maximus.service.DoctorService;
 import com.maximus.model.Doctor;
 import com.maximus.dto.DoctorDTO;
@@ -65,4 +64,5 @@ public class DoctorController {
 		.orElseThrow(() -> new Exception("Doctor not found - " + doctorEmail));
 		return DoctorMapper.fromEntityToDTO(doctor);
 	}
+	
 }
