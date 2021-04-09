@@ -26,6 +26,8 @@ public class Patient {
 	private String patientHeight;
 	private String patientWeight;
 	private String patientAge;
+	private String username;
+	private String password;
 
 	@Fetch(FetchMode.SELECT)
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "patient")
@@ -132,6 +134,22 @@ public class Patient {
 
 	public void setDevice(Device device) {
 		this.device = device;
+	}
+	
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	@Override
