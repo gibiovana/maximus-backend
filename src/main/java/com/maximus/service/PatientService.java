@@ -7,6 +7,7 @@ import com.maximus.model.Patient;
 import com.maximus.dto.DoctorDTO;
 import com.maximus.dto.PatientDTO;
 import com.maximus.mapper.DoctorMapper;
+import com.maximus.mapper.PatientMapper;
 import com.maximus.repository.DoctorRepository;
 import com.maximus.repository.PatientRepository;
 
@@ -23,14 +24,14 @@ public class PatientService {
 		return this.repository.findById(id);
 	}
 
-	public Optional<Patient> getUser(String doctorEmail, String password){
-		return this.repository.findByPatientEmailAndPassword(doctorEmail, password);
+	public Optional<Patient> getUser(String username, String password){
+		return this.repository.findByUsernameAndPassword(username, password);
 	}
 	
 	@Transactional
 	public PatientDTO storePatientData(PatientDTO dto) {
 		Patient patient = PatientMapper.fromDTOToEntity(dto);
-		Optional<Patient> existingUser = patient.getPatientId() != null ? this.repository.findByPatientProntuary(dto.getPatientProntuary()) : Optional.ofNullable(null);
+		Optional<Patient> existingUser = patient.getPatientId() != null ? this.repository.findByProntuary(dto.getProntuary()) : Optional.ofNullable(null);
 		
 		if(!existingUser.isPresent()) {
 	    	patient.setName(dto.getName());
