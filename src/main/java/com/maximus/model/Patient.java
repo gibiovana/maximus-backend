@@ -7,12 +7,16 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 import javax.persistence.ForeignKey;
+
+import java.sql.Date;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "Patient")
@@ -25,7 +29,7 @@ public class Patient {
 	private String pathologicalCondition;
 	private String patientHeight;
 	private String patientWeight;
-	private String patientAge;
+	private Date birthdate;
 	private String username;
 	private String password;
 
@@ -36,11 +40,17 @@ public class Patient {
 	@ManyToMany(mappedBy="patientList")
 	private List<Doctor> doctorsAssigned;
 
+	 @ManyToOne
+	 private Institution institution;
+	
 	@OneToOne
 	@JoinColumn(name = "device_id", referencedColumnName="deviceId", foreignKey = @ForeignKey(name="device_id"))
 	private Device device;
+	
+	//@OneToMany(mappedBy = "patient")
+   // Set<DoctorPatient> doctorPatient;
 
-	public Patient(Integer patientId, String name, List<Doctor> doctorsAssigned, String prontuary, String pathologicalCondition, String patientHeight, String patientWeight, String patientAge, List<Diagnosis> diagnosisList, Device device) {
+	public Patient(Integer patientId, String name, List<Doctor> doctorsAssigned, String prontuary, String pathologicalCondition, String patientHeight, String patientWeight, Date birthdate, List<Diagnosis> diagnosisList, Device device, Institution institution) {
 		this.patientId = patientId;
 		this.name = name;
 		this.doctorsAssigned = doctorsAssigned;
@@ -48,9 +58,10 @@ public class Patient {
 		this.pathologicalCondition = pathologicalCondition;
 		this.patientHeight = patientHeight;
 		this.patientWeight = patientWeight;
-		this.patientAge = patientAge;
+		this.birthdate = birthdate;
 		this.diagnosisList = diagnosisList;
 		this.device = device;
+		this.institution = institution;
 	}
 
 	public Patient() {
@@ -112,14 +123,6 @@ public class Patient {
 		this.patientWeight = patientWeight;
 	}
 
-	public String getPatientAge() {
-		return patientAge;
-	}
-
-	public void setPatientAge(String patientAge) {
-		this.patientAge = patientAge;
-	}
-
 	public List<Diagnosis> getDiagnosisList() {
 		return diagnosisList;
 	}
@@ -150,6 +153,22 @@ public class Patient {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public Date getBirthdate() {
+		return birthdate;
+	}
+
+	public void setBirthdate(Date birthdate) {
+		this.birthdate = birthdate;
+	}
+
+	public Institution getInstitution() {
+		return institution;
+	}
+
+	public void setInstitution(Institution institution) {
+		this.institution = institution;
 	}
 
 	@Override

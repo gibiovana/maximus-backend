@@ -1,8 +1,12 @@
 package com.maximus.dto;
 
+import java.sql.Date;
+
 import java.util.List;
+import java.util.Set;
 
 import com.maximus.model.Doctor;
+//import com.maximus.model.DoctorPatient;
 
 public class PatientDTO {
 	private Integer patientId;
@@ -11,10 +15,11 @@ public class PatientDTO {
 	private String pathologicalCondition;
 	private String patientHeight;
 	private String patientWeight;
-	private String patientAge;
+	private Date birthdate;
 	private String username;
 	private String password;
 	private List<Doctor> doctorsAssigned;
+	//private Set<DoctorPatient> doctorPatient;
 
 	public Integer getPatientId() {
 		return patientId;
@@ -72,12 +77,12 @@ public class PatientDTO {
 		this.patientWeight = patientWeight;
 	}
 
-	public String getPatientAge() {
-		return patientAge;
+	public Date getBirthdate() {
+		return birthdate;
 	}
 
-	public void setPatientAge(String patientAge) {
-		this.patientAge = patientAge;
+	public void setBirthdate(Date birthdate) {
+		this.birthdate = birthdate;
 	}
 
 	public String getUsername() {
@@ -95,6 +100,7 @@ public class PatientDTO {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
 
 	@Override
 	public String toString() {

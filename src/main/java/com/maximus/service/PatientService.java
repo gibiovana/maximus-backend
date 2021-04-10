@@ -1,6 +1,8 @@
 package com.maximus.service;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import com.maximus.model.Doctor;
 import com.maximus.model.Patient;
@@ -19,6 +21,9 @@ import org.springframework.transaction.annotation.Transactional;
 public class PatientService {
 	@Autowired
 	private PatientRepository repository;
+	
+	@Autowired
+	private DoctorRepository docRepository;
 	
 	public Optional<Patient> findById(Integer id){
 		return this.repository.findById(id);
@@ -39,9 +44,19 @@ public class PatientService {
 	    	patient.setPathologicalCondition(dto.getPathologicalCondition());
 	    	patient.setPatientHeight(dto.getPatientHeight());
 	    	patient.setPatientWeight(dto.getPatientWeight());
-	    	patient.setPatientAge(dto.getPatientAge());
+	    	patient.setBirthdate(dto.getBirthdate());
 	    	patient.setUsername(dto.getUsername());
 	    	patient.setPassword(dto.getPassword());
+	    	patient.setDoctorsAssigned(dto.getAssignedDoctors());
+	    	
+			List<Doctor> doctors = patient.getAssignedDoctors();
+			
+			for(Doctor doctor : doctors) {
+				Optional<Doctor> existingDoc = this.docRepository.findByDoctorId(doctor.getDoctorId());
+				List<Patient> aux = new ArrayList<>();
+				aux.add(patient);
+				existingDoc.get().setPatientList(aux);
+			}
 		}else{
 			new Exception("Usuário já foi registrado.");
 		}

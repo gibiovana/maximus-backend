@@ -64,5 +64,5 @@ public class DoctorController {
 		.orElseThrow(() -> new Exception("Doctor not found - " + doctorEmail));
 		return DoctorMapper.fromEntityToDTO(doctor);
 	}
-	
+	 
 }

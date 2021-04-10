@@ -1,5 +1,7 @@
 package com.maximus.model;
 import java.util.List;
+import java.util.Set;
+
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -9,6 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -23,13 +26,16 @@ public class Doctor{
 	private String password;
 
 	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(name = "patient",
+	@JoinTable(name = "doctor_patient",
     	joinColumns = @JoinColumn(name = "doctor_patient_id", referencedColumnName = "doctorId"),
     	inverseJoinColumns = @JoinColumn(name = "patient_doctor_id", referencedColumnName = "patientId"))
 	private List<Patient> patientList;
 
 	@ManyToOne
     private Institution institution;
+	
+	//@OneToMany(mappedBy = "doctor")
+    //Set<DoctorPatient> doctorPatient;
 	
 	public Doctor() {}
 

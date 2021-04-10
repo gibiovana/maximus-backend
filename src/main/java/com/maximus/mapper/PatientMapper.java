@@ -12,7 +12,7 @@ public class PatientMapper {
     	dto.setPathologicalCondition(entity.getPathologicalCondition());
     	dto.setPatientHeight(entity.getPatientHeight());
     	dto.setPatientWeight(entity.getPatientWeight());
-    	dto.setPatientAge(entity.getPatientAge());
+    	dto.setBirthdate(entity.getBirthdate());
     	dto.setUsername(entity.getUsername());
     	dto.setPassword(entity.getPassword());
         return dto;
@@ -26,7 +26,7 @@ public class PatientMapper {
     	entity.setPathologicalCondition(dto.getPathologicalCondition());
     	entity.setPatientHeight(dto.getPatientHeight());
     	entity.setPatientWeight(dto.getPatientWeight());
-    	entity.setPatientAge(dto.getPatientAge());
+    	entity.setBirthdate(dto.getBirthdate());
     	entity.setUsername(dto.getUsername());
     	entity.setPassword(dto.getPassword());
         return entity;

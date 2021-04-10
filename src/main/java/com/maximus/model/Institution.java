@@ -22,6 +22,10 @@ public class Institution {
   	private String cnes; 
 	private String adminEmail;
 	private String password;
+	
+	@Fetch(FetchMode.SELECT)
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "institution")
+	private List<Patient> patientList;
 
 	@Fetch(FetchMode.SELECT)
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "institution")
@@ -30,13 +34,14 @@ public class Institution {
 	public Institution() {
 	}
 
-	public Institution(Integer institutionId, String name, String cnes, String adminEmail, String password, List<Doctor> doctors) {
+	public Institution(Integer institutionId, String name, String cnes, String adminEmail, String password, List<Doctor> doctors, List<Patient> patientList) {
 		this.institutionId = institutionId;
 		this.institutionName = name;
     	this.cnes = cnes;
 		this.adminEmail = adminEmail;
 		this.password = password;
 		this.doctors = doctors;
+		this.patientList = patientList;
 	}
 
 	public Integer getInstitutionId() {
@@ -86,5 +91,14 @@ public class Institution {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
+	public List<Patient> getPatientList() {
+		return patientList;
+	}
+
+	public void setPatientList(List<Patient> patientList) {
+		this.patientList = patientList;
+	}
+	
 	
 }
