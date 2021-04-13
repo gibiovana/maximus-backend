@@ -3,9 +3,9 @@ package com.maximus.dto;
 import java.sql.Date;
 
 import java.util.List;
-import java.util.Set;
 
 import com.maximus.model.Doctor;
+import com.maximus.model.Institution;
 //import com.maximus.model.DoctorPatient;
 
 public class PatientDTO {
@@ -18,8 +18,9 @@ public class PatientDTO {
 	private Date birthdate;
 	private String username;
 	private String password;
+	private Institution institution;
 	private List<Doctor> doctorsAssigned;
-	//private Set<DoctorPatient> doctorPatient;
+	//private List<DoctorPatient> doctorPatient;
 
 	public Integer getPatientId() {
 		return patientId;
@@ -101,6 +102,13 @@ public class PatientDTO {
 		this.password = password;
 	}
 
+	public Institution getInstitution() {
+		return institution;
+	}
+
+	public void setInstitution(Institution institution) {
+		this.institution = institution;
+	}
 
 	@Override
 	public String toString() {

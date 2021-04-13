@@ -10,34 +10,38 @@ import javax.persistence.Table;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.List;
 
 @Entity
 @Table(name = "Institution")
 public class Institution {
-  @Id
+	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer institutionId;
 	private String institutionName;
-  	private String cnes; 
+	private String cnes;
 	private String adminEmail;
 	private String password;
-	
+
 	@Fetch(FetchMode.SELECT)
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "institution")
 	private List<Patient> patientList;
 
 	@Fetch(FetchMode.SELECT)
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "institution")
-    private List<Doctor> doctors;
+	private List<Doctor> doctors;
 
 	public Institution() {
 	}
 
-	public Institution(Integer institutionId, String name, String cnes, String adminEmail, String password, List<Doctor> doctors, List<Patient> patientList) {
+	public Institution(Integer institutionId, String name, String cnes, String adminEmail, String password,
+			List<Doctor> doctors, List<Patient> patientList) {
 		this.institutionId = institutionId;
 		this.institutionName = name;
-    	this.cnes = cnes;
+		this.cnes = cnes;
 		this.adminEmail = adminEmail;
 		this.password = password;
 		this.doctors = doctors;
@@ -56,7 +60,7 @@ public class Institution {
 		this.institutionName = name;
 	}
 
-    public String getCnes() {
+	public String getCnes() {
 		return cnes;
 	}
 
@@ -99,6 +103,5 @@ public class Institution {
 	public void setPatientList(List<Patient> patientList) {
 		this.patientList = patientList;
 	}
-	
-	
+
 }

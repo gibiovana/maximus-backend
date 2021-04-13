@@ -1,5 +1,7 @@
 package com.maximus.model;
+
 import javax.persistence.Entity;
+
 import javax.persistence.Table;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -12,16 +14,19 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
+
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.ForeignKey;
 
 import java.sql.Date;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table(name = "Patient")
 public class Patient {
-    @Id
+	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer patientId;
 	private String name;
@@ -37,20 +42,23 @@ public class Patient {
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "patient")
 	private List<Diagnosis> diagnosisList;
 
-	@ManyToMany(mappedBy="patientList")
+	@ManyToMany(mappedBy = "patientList")
 	private List<Doctor> doctorsAssigned;
 
-	 @ManyToOne
-	 private Institution institution;
-	
-	@OneToOne
-	@JoinColumn(name = "device_id", referencedColumnName="deviceId", foreignKey = @ForeignKey(name="device_id"))
-	private Device device;
-	
-	//@OneToMany(mappedBy = "patient")
-   // Set<DoctorPatient> doctorPatient;
+	@JsonIgnore
+	@ManyToOne
+	private Institution institution;
 
-	public Patient(Integer patientId, String name, List<Doctor> doctorsAssigned, String prontuary, String pathologicalCondition, String patientHeight, String patientWeight, Date birthdate, List<Diagnosis> diagnosisList, Device device, Institution institution) {
+	@OneToOne
+	@JoinColumn(name = "device_id", referencedColumnName = "deviceId", foreignKey = @ForeignKey(name = "device_id"))
+	private Device device;
+
+	// @OneToMany(mappedBy = "patient")
+	// List<DoctorPatient> doctorPatient;
+
+	public Patient(Integer patientId, String name, List<Doctor> doctorsAssigned, String prontuary,
+			String pathologicalCondition, String patientHeight, String patientWeight, Date birthdate,
+			List<Diagnosis> diagnosisList, Device device, Institution institution) {
 		this.patientId = patientId;
 		this.name = name;
 		this.doctorsAssigned = doctorsAssigned;
@@ -138,7 +146,7 @@ public class Patient {
 	public void setDevice(Device device) {
 		this.device = device;
 	}
-	
+
 	public String getUsername() {
 		return username;
 	}
@@ -175,5 +183,5 @@ public class Patient {
 	public String toString() {
 		return name;
 	}
-	
+
 }

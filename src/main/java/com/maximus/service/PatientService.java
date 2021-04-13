@@ -4,7 +4,10 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
+
 import com.maximus.model.Doctor;
+import com.maximus.model.Institution;
 import com.maximus.model.Patient;
 import com.maximus.dto.DoctorDTO;
 import com.maximus.dto.PatientDTO;
@@ -47,16 +50,22 @@ public class PatientService {
 	    	patient.setBirthdate(dto.getBirthdate());
 	    	patient.setUsername(dto.getUsername());
 	    	patient.setPassword(dto.getPassword());
+	    	patient.setInstitution(dto.getInstitution());
 	    	patient.setDoctorsAssigned(dto.getAssignedDoctors());
 	    	
 			List<Doctor> doctors = patient.getAssignedDoctors();
+			List<Patient> aux = new ArrayList<>();
+			aux.add(patient);
 			
 			for(Doctor doctor : doctors) {
+				//doctor.setPatientList(aux);
 				Optional<Doctor> existingDoc = this.docRepository.findByDoctorId(doctor.getDoctorId());
-				List<Patient> aux = new ArrayList<>();
-				aux.add(patient);
 				existingDoc.get().setPatientList(aux);
 			}
+			
+			Institution institution = patient.getInstitution();
+			institution.setPatientList(aux);
+			
 		}else{
 			new Exception("Usuário já foi registrado.");
 		}
