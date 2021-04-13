@@ -46,7 +46,6 @@ public class PatientController {
 		return repo.findAll();
 	}
 	
-	
 	@PostMapping("/register")
 	public PatientDTO registerPatient(@RequestBody PatientDTO patientDTO) {
 		return this.patientService.storePatientData(patientDTO);

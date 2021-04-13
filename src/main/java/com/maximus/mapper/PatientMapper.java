@@ -6,7 +6,7 @@ import com.maximus.dto.PatientDTO;
 public class PatientMapper {
     public static PatientDTO fromEntityToDTO(Patient entity){
         PatientDTO dto = new PatientDTO();
-    	dto.setPatientId(dto.getPatientId());
+    	dto.setPatientId(entity.getPatientId());
     	dto.setName(entity.getName());
     	dto.setProntuary(entity.getProntuary());
     	dto.setPathologicalCondition(entity.getPathologicalCondition());

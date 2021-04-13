@@ -3,7 +3,7 @@ package com.maximus.dto;
 public class InstitutionDTO {
 	private Integer institutionId;
 	private String institutionName;
-  private String cnes; 
+	private String cnes;
 	private String adminEmail;
 	private String password;
 
@@ -13,7 +13,7 @@ public class InstitutionDTO {
 	public InstitutionDTO(Integer institutionId, String name, String cnes, String adminEmail, String password) {
 		this.institutionId = institutionId;
 		this.institutionName = name;
-    this.cnes = cnes;
+		this.cnes = cnes;
 		this.adminEmail = adminEmail;
 		this.password = password;
 	}
@@ -34,13 +34,14 @@ public class InstitutionDTO {
 		this.institutionName = name;
 	}
 
-    public String getCnes() {
+	public String getCnes() {
 		return cnes;
 	}
 
 	public void setInstitutionCNES(String cnes) {
 		this.cnes = cnes;
 	}
+
 	public String getAdminEmail() {
 		return adminEmail;
 	}

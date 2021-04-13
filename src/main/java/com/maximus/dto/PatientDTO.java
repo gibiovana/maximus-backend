@@ -6,7 +6,6 @@ import java.util.List;
 
 import com.maximus.model.Doctor;
 import com.maximus.model.Institution;
-//import com.maximus.model.DoctorPatient;
 
 public class PatientDTO {
 	private Integer patientId;
@@ -20,7 +19,6 @@ public class PatientDTO {
 	private String password;
 	private Institution institution;
 	private List<Doctor> doctorsAssigned;
-	//private List<DoctorPatient> doctorPatient;
 
 	public Integer getPatientId() {
 		return patientId;
@@ -38,7 +36,7 @@ public class PatientDTO {
 		this.name = name;
 	}
 
-	public List<Doctor> getAssignedDoctors() {
+	public List<Doctor> getDoctorsAssigned() {
 		return doctorsAssigned;
 	}
 

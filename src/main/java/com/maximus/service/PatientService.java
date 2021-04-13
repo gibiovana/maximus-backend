@@ -4,14 +4,11 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 import com.maximus.model.Doctor;
 import com.maximus.model.Institution;
 import com.maximus.model.Patient;
-import com.maximus.dto.DoctorDTO;
 import com.maximus.dto.PatientDTO;
-import com.maximus.mapper.DoctorMapper;
 import com.maximus.mapper.PatientMapper;
 import com.maximus.repository.DoctorRepository;
 import com.maximus.repository.PatientRepository;
@@ -51,16 +48,21 @@ public class PatientService {
 	    	patient.setUsername(dto.getUsername());
 	    	patient.setPassword(dto.getPassword());
 	    	patient.setInstitution(dto.getInstitution());
-	    	patient.setDoctorsAssigned(dto.getAssignedDoctors());
+	    	patient.setDoctorsAssigned(dto.getDoctorsAssigned());
 	    	
-			List<Doctor> doctors = patient.getAssignedDoctors();
+			List<Doctor> doctors = patient.getDoctorsAssigned();
 			List<Patient> aux = new ArrayList<>();
 			aux.add(patient);
 			
 			for(Doctor doctor : doctors) {
-				//doctor.setPatientList(aux);
-				Optional<Doctor> existingDoc = this.docRepository.findByDoctorId(doctor.getDoctorId());
-				existingDoc.get().setPatientList(aux);
+				List<Patient> hasPatients = doctor.getPatientList();
+				if(hasPatients != null) {
+					hasPatients.add(patient);
+				}else {
+					//doctor.setPatientList(aux);
+					Optional<Doctor> existingDoc = this.docRepository.findByDoctorId(doctor.getDoctorId());
+					existingDoc.get().setPatientList(aux);
+				}
 			}
 			
 			Institution institution = patient.getInstitution();

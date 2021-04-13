@@ -91,7 +91,7 @@ public class Patient {
 		this.name = name;
 	}
 
-	public List<Doctor> getAssignedDoctors() {
+	public List<Doctor> getDoctorsAssigned() {
 		return doctorsAssigned;
 	}
 
