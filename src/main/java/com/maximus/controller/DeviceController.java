@@ -33,7 +33,7 @@ public class DeviceController {
 	
 	@GetMapping(path = "/all")
 	@ResponseBody
-	public List<Device> getAllDevices (@PathVariable(required = true, name="value")String name){
+	public List<Device> getAllDevices (){
 		return repo.findAll();
 	}
 	

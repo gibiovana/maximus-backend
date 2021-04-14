@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
 import com.maximus.service.DoctorService;
@@ -55,6 +56,11 @@ public class DoctorController {
 	@PostMapping("/register")
 	public DoctorDTO registerDoctor(@RequestBody DoctorDTO doctorDTO) {
 		return this.doctorService.storeDoctorData(doctorDTO);
+	}
+	
+	@PutMapping("/update/{id}")
+	public DoctorDTO updateDoctor(@PathVariable(required = true, name="id")Integer id, @RequestBody DoctorDTO doctorDTO) {
+		return this.doctorService.updateDoctorData(id, doctorDTO);
 	}
 
 	@RequestMapping("/login/{doctorEmail}&{password}")

@@ -1,11 +1,18 @@
 package com.maximus.dto;
 
+import java.util.List;
+
+import com.maximus.model.Institution;
+import com.maximus.model.Patient;
+
 public class DoctorDTO{
 	private Integer doctorId;
 	private String doctorName;
 	private String doctorEmail;
 	private String doctorCRM;
 	private String password;
+	private List<Patient> patientList;
+	private Institution institution;
 
 	public Integer getDoctorId() {
 		return doctorId;
@@ -45,6 +52,22 @@ public class DoctorDTO{
 
 	public void setDoctorEmail(String doctorEmail) {
 		this.doctorEmail = doctorEmail;
+	}
+
+	public Institution getInstitution() {
+		return institution;
+	}
+
+	public void setInstitution(Institution institution) {
+		this.institution = institution;
+	}
+
+	public List<Patient> getPatientList() {
+		return patientList;
+	}
+
+	public void setPatientList(List<Patient> patientList) {
+		this.patientList = patientList;
 	}
 	
 }
