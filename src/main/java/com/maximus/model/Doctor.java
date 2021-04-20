@@ -18,6 +18,8 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 @Entity
 @Table(name = "Doctor")
@@ -39,20 +41,22 @@ public class Doctor {
 	@ManyToOne
 	private Institution institution;
 
-	// @OneToMany(mappedBy = "doctor")
-	// Set<DoctorPatient> doctorPatient;
+	@Fetch(FetchMode.SELECT)
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "patient")
+	private List<Diagnosis> diagnosisList;
 
 	public Doctor() {
 	}
 
 	public Doctor(Integer doctorId, String doctorName, String doctorCRM, String password, List<Patient> patientList,
-			Institution institution) {
+			Institution institution, List<Diagnosis> diagnosisList) {
 		this.doctorId = doctorId;
 		this.doctorName = doctorName;
 		this.doctorCRM = doctorCRM;
 		this.password = password;
 		this.patientList = patientList;
 		this.institution = institution;
+		this.diagnosisList = diagnosisList;
 	}
 
 	public Doctor(String name) {
@@ -120,4 +124,11 @@ public class Doctor {
 		return doctorName;
 	}
 
+	public List<Diagnosis> getDiagnosisList() {
+		return diagnosisList;
+	}
+
+	public void setDiagnosisList(List<Diagnosis> diagnosisList) {
+		this.diagnosisList = diagnosisList;
+	}
 }

@@ -50,16 +50,16 @@ public class PatientService {
 	    	patient.setInstitution(dto.getInstitution());
 	    	patient.setDoctorsAssigned(dto.getDoctorsAssigned());
 	    	
-			List<Doctor> doctors = patient.getDoctorsAssigned();
+			List<Doctor> doctors = dto.getDoctorsAssigned();
 			List<Patient> aux = new ArrayList<>();
 			aux.add(patient);
-			
+
 			for(Doctor doctor : doctors) {
 				List<Patient> hasPatients = doctor.getPatientList();
 				if(hasPatients != null) {
 					hasPatients.add(patient);
+					doctor.setPatientList(hasPatients);
 				}else {
-					//doctor.setPatientList(aux);
 					Optional<Doctor> existingDoc = this.docRepository.findByDoctorId(doctor.getDoctorId());
 					existingDoc.get().setPatientList(aux);
 				}

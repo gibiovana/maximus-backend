@@ -12,7 +12,7 @@ public class InstitutionMapper {
     dto.setAdminEmail(entity.getAdminEmail());
     dto.setPassword(entity.getPassword());
     return dto;
-}
+  }
 
 public static Institution fromDTOToEntity(InstitutionDTO dto) {
   Institution entity = new Institution();
@@ -22,5 +22,5 @@ public static Institution fromDTOToEntity(InstitutionDTO dto) {
   entity.setAdminEmail(dto.getAdminEmail());
   entity.setPassword(dto.getPassword());
   return entity;
-}
+  }
 }
