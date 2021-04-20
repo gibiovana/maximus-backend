@@ -1,4 +1,6 @@
 package com.maximus.model;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,13 +14,13 @@ import javax.persistence.ForeignKey;
 @Table(name = "Device")
 public class Device {
     @Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer deviceId;
     private String operatingSystem;
     private String model;
 
     @OneToOne
     @JoinColumn(name = "patient_id", referencedColumnName="patientId", foreignKey = @ForeignKey(name="fk_patient_id"))
+    @JsonIgnore
     private Patient owner;
     
     public Device(Integer deviceId, Patient owner, String operatingSystem, String model) {

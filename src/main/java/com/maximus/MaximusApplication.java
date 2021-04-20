@@ -1,4 +1,3 @@
-
 package com.maximus;
 
 import org.springframework.boot.SpringApplication;

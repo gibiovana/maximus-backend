@@ -18,7 +18,8 @@ import org.springframework.transaction.annotation.Transactional;
 public class DeviceService {
 	@Autowired
 	private DeviceRepository repository;
-	
+
+	@Autowired
 	private PatientRepository patRepo;
 	
 	public Optional<Device> findById(Integer id){
@@ -33,8 +34,8 @@ public class DeviceService {
 		device.setOperatingSystem(dto.getOperatingSystem());
 		device.setOwner(dto.getOwner());
 		
-		Patient owner = device.getOwner();
-		Optional<Patient> existingPatient = this.patRepo.findById(owner.getPatientId());
+		Patient owner = dto.getOwner();
+		Optional<Patient> existingPatient = Optional.ofNullable(this.patRepo.findByPatientId(owner.getPatientId()));
 		existingPatient.get().setDevice(device);
 		owner.setDevice(device);
 

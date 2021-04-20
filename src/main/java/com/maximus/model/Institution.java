@@ -26,6 +26,7 @@ public class Institution {
 	private String adminEmail;
 	private String password;
 
+	@JsonIgnore
 	@Fetch(FetchMode.SELECT)
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "institution")
 	private List<Patient> patientList;

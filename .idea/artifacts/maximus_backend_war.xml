@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="maximus-backend:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>maximus-backend</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="maximus-backend-0.0.1.war">
+      <element id="artifact" artifact-name="maximus-backend:war exploded" />
+    </root>
+  </artifact>
+</component>

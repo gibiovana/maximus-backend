@@ -45,7 +45,6 @@ public class Patient {
 	@ManyToMany(mappedBy = "patientList")
 	private List<Doctor> doctorsAssigned;
 
-	@JsonIgnore
 	@ManyToOne
 	private Institution institution;
 

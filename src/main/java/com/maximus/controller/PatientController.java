@@ -5,12 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import com.maximus.dto.PatientDTO;
 import com.maximus.mapper.PatientMapper;
@@ -19,7 +14,7 @@ import com.maximus.model.Patient;
 import com.maximus.repository.PatientRepository;
 import com.maximus.service.PatientService;
 
-
+@CrossOrigin(origins = "*")
 @Controller
 @RequestMapping(path = "/patient")
 public class PatientController {
@@ -38,6 +33,12 @@ public class PatientController {
 	@ResponseBody
 	public List<Patient> getAllPatientsByName (@PathVariable(required = true, name="value")String name){
 		return repo.findByNameContaining(name);
+	}
+
+	@GetMapping(path = "/{id}")
+	@ResponseBody
+	public Patient getPatientById (@PathVariable(required = true, name="id")Integer id){
+		return repo.findByPatientId(id);
 	}
 	
 	@GetMapping(path = "/all")

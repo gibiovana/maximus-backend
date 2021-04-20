@@ -65,7 +65,7 @@ public class PatientService {
 				}
 			}
 			
-			Institution institution = patient.getInstitution();
+			Institution institution = dto.getInstitution();
 			institution.setPatientList(aux);
 			
 		}else{
