@@ -36,8 +36,8 @@ public class DiagnosisService {
         return this.repository.findByDiagnosisId(id);
     }
 
-    public Optional<Diagnosis> getDiagnosisByPatient(PatientDTO dto){
-        Patient selectedPatient = PatientMapper.fromDTOToEntity(dto);
+    public List<Diagnosis> getDiagnosisByPatientId(Integer patientId){
+        Patient selectedPatient = this.patientRepository.findByPatientId(patientId);
         return this.repository.findByPatient(selectedPatient);
     }
 

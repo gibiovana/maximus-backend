@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import com.maximus.dto.DiagnosisDTO;
 import com.maximus.dto.DoctorDTO;
+import com.maximus.dto.PatientDTO;
 import com.maximus.service.DiagnosisService;
 import com.maximus.service.DoctorService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,10 +36,10 @@ public class DiagnosisController {
 		return repo.findAll();
 	}
 	
-	@GetMapping(path = "/patient/{value}")
+	@GetMapping(path = "/patient/{patientId}")
 	@ResponseBody
-	public Optional<Diagnosis> getDiagnosisByPatient (@PathVariable(required = true, name="value")Patient patient){
-		return repo.findByPatient(patient);
+	public List<Diagnosis> getDiagnosisByPatientId (@PathVariable(required = true, name="patientId") Integer patientId){
+		return this.diagnosisService.getDiagnosisByPatientId(patientId);
 	}
 
 	@PostMapping("/register")
