@@ -38,6 +38,7 @@ public class Patient {
 	private String username;
 	private String password;
 
+	@JsonIgnore
 	@Fetch(FetchMode.SELECT)
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "patient")
 	private List<Diagnosis> diagnosisList;

@@ -52,11 +52,22 @@ public class DiagnosisService {
 
         Patient patient = dto.getPatient();
         List<Diagnosis> aux = patient.getDiagnosisList();
-        aux.add(entity);
+        if(aux != null){
+            aux.add(entity);
+        } else {
+            aux = new ArrayList<>();
+            aux.add(entity);
+        }
         patient.setDiagnosisList(aux);
 
         Doctor doctor = dto.getAuthor();
         List<Diagnosis> doctorDiagnosisList = doctor.getDiagnosisList();
+        if(doctorDiagnosisList != null){
+            doctorDiagnosisList.add(entity);
+        } else {
+            doctorDiagnosisList = new ArrayList<>();
+            doctorDiagnosisList.add(entity);
+        }
         doctorDiagnosisList.add(entity);
         doctor.setDiagnosisList(doctorDiagnosisList);
 

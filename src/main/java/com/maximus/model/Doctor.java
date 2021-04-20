@@ -41,6 +41,7 @@ public class Doctor {
 	@ManyToOne
 	private Institution institution;
 
+	@JsonIgnore
 	@Fetch(FetchMode.SELECT)
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "patient")
 	private List<Diagnosis> diagnosisList;
