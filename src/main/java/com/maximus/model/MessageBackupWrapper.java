@@ -1,17 +1,20 @@
 package com.maximus.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.io.Serializable;
 
 
 @Entity
-@Table(name="MessageBackup")
-public class MessageBackupWrapper {
+@Table(name="MessageBackupWrapper")
+public class MessageBackupWrapper implements Serializable {
     @Id
     private Integer messageBackupId;
+    @OneToOne
+    @JoinColumn
     private MessageBackup sent;
+
+    @OneToOne
+    @JoinColumn
     private MessageBackup received;
 
     public MessageBackupWrapper(MessageBackup sent, MessageBackup received) {
@@ -29,7 +32,6 @@ public class MessageBackupWrapper {
         return messageBackupId;
     }
 
-    @OneToOne
     public MessageBackup getSent() {
         return sent;
     }
@@ -38,7 +40,6 @@ public class MessageBackupWrapper {
         this.sent = sent;
     }
 
-    @OneToOne
     public MessageBackup getReceived() {
         return received;
     }

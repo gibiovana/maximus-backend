@@ -6,6 +6,9 @@ public class MessageBackupDTO {
     private String text;
     private Timestamp timestamp;
 
+    public MessageBackupDTO() {
+    }
+
     public String getText() {
         return text;
     }

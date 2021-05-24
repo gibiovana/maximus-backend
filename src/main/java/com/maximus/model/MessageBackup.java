@@ -12,13 +12,7 @@ public class MessageBackup {
     private String text;
     private Timestamp timestamp;
 
-    public MessageBackup(String text, Timestamp timestamp) {
-        this.text = text;
-        this.timestamp = timestamp;
-    }
-
     public MessageBackup() {
-
     }
 
     public String getText() {

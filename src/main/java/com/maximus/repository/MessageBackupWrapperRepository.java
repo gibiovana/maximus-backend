@@ -1,6 +1,5 @@
 package com.maximus.repository;
 
-import com.maximus.model.MessageBackup;
 import com.maximus.model.MessageBackupWrapper;
 import org.springframework.data.jpa.repository.JpaRepository;
 

@@ -2,25 +2,32 @@ package com.maximus.dto;
 
 import com.maximus.model.MessageBackup;
 
-import java.sql.Timestamp;
+import java.io.Serializable;
 
-public class MessageBackupWrapperDTO {
-    private MessageBackup sent;
-    private MessageBackup received;
+public class MessageBackupWrapperDTO implements Serializable {
 
-    public MessageBackup getSent() {
+    private MessageBackupDTO sent;
+    private MessageBackupDTO received;
+
+    public MessageBackupWrapperDTO() {
+    }
+
+    public MessageBackupDTO getSent() {
         return sent;
     }
 
-    public void setSent(MessageBackup sent) {
+    public void setSent(MessageBackupDTO sent) {
         this.sent = sent;
     }
 
-    public MessageBackup getReceived() {
+    public MessageBackupDTO getReceived() {
         return received;
     }
 
-    public void setReceived(MessageBackup received) {
+    public void setReceived(MessageBackupDTO received) {
         this.received = received;
     }
+
+
+
 }

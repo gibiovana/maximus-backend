@@ -8,15 +8,20 @@ import com.maximus.model.MessageBackupWrapper;
 public class MessageBackupWrapperMapper {
     public static MessageBackupWrapperDTO fromEntityToDTO(MessageBackupWrapper entity){
         MessageBackupWrapperDTO dto = new MessageBackupWrapperDTO();
-        dto.setSent(entity.getSent());
-        dto.setReceived(entity.getReceived());
+        MessageBackupDTO sent = MessageBackupMapper.fromEntityToDTO(entity.getSent());
+        MessageBackupDTO received = MessageBackupMapper.fromEntityToDTO(entity.getReceived());
+        dto.setSent(sent);
+        dto.setReceived(received);
         return dto;
     }
 
     public static MessageBackupWrapper fromDTOToEntity(MessageBackupWrapperDTO dto) {
         MessageBackupWrapper entity = new MessageBackupWrapper();
-        entity.setSent(dto.getSent());
-        entity.setReceived(dto.getReceived());
+        MessageBackup sent = MessageBackupMapper.fromDTOToEntity(dto.getSent());
+        MessageBackup received = MessageBackupMapper.fromDTOToEntity(dto.getReceived());
+
+        entity.setSent(sent);
+        entity.setReceived(received);
         return entity;
     }
 }
